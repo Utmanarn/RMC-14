@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Client._RMC14.UserInterface;
 using Content.Client.Message;
 using Content.Shared._RMC14.Marines.Squads;
@@ -280,6 +280,7 @@ public sealed class OverwatchConsoleBui : RMCPopOutBui<OverwatchConsoleWindow>
             foreach (var marine in marines)
             {
                 var roleName = "None";
+                string? paygrade = "N/A";
                 if (marine.Role != null)
                 {
                     if (_prototypes.TryIndex(marine.Role, out var job))
@@ -304,6 +305,14 @@ public sealed class OverwatchConsoleBui : RMCPopOutBui<OverwatchConsoleWindow>
 
                     role.All.Add(marine);
                     roles[marine.Role.Value] = role;
+                }
+
+                if (marine.Rank != null)
+                {
+                    if (_prototypes.TryIndex(marine.Rank, out var rank))
+                        paygrade = rank.Paygrade;
+
+
                 }
 
                 var name = marine.Name;
@@ -347,6 +356,15 @@ public sealed class OverwatchConsoleBui : RMCPopOutBui<OverwatchConsoleWindow>
                     };
                     location.AddChild(locationLabel);
                     monitor.Locations.AddChild(location);
+
+                    var paygradePanel = CreatePanel(50);
+                    var paygradeLabel = new Label
+                    {
+                        Text = paygrade,
+                        Margin = margin,
+                    };
+                    paygradePanel.AddChild(paygradeLabel);
+                    monitor.Paygrades.AddChild(paygradePanel);
 
                     var distancePanel = CreatePanel(50);
                     var distanceLabel = new Label { Margin = margin };

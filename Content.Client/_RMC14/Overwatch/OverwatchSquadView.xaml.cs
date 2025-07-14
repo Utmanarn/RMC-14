@@ -1,4 +1,4 @@
-﻿using Content.Client._RMC14.UserInterface;
+using Content.Client._RMC14.UserInterface;
 using Content.Client.UserInterface.ControlExtensions;
 using Content.Shared._RMC14.Overwatch;
 using Content.Shared.Mobs;
@@ -110,6 +110,7 @@ public sealed partial class OverwatchSquadView : Control
         MakeAllVisible(Roles);
         MakeAllVisible(States);
         MakeAllVisible(Locations);
+        MakeAllVisible(Paygrades);
         MakeAllVisible(Distances);
         MakeAllVisible(Buttons);
     }
@@ -128,6 +129,7 @@ public sealed partial class OverwatchSquadView : Control
         MakeControlVisible(Roles, index, visible);
         MakeControlVisible(States, index, visible);
         MakeControlVisible(Locations, index, visible);
+        MakeControlVisible(Paygrades, index, visible);
         MakeControlVisible(Distances, index, visible);
         MakeControlVisible(Buttons, index, visible);
     }
